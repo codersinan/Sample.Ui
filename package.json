@@ -37,7 +37,9 @@
     "@angular/platform-browser": "^11.2.0",
     "@angular/platform-browser-dynamic": "^11.2.0",
     "@angular/router": "^11.2.0",
+    "@ngrx/component-store": "^11.1.0",
     "@nrwl/angular": "11.6.1",
+    "fast-json-patch": "^3.0.0-1",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "^0.10.2"
@@ -50,6 +52,7 @@
     "@angular/cli": "~11.2.8",
     "@angular/compiler-cli": "^11.2.0",
     "@angular/language-service": "^11.2.0",
+    "@ngneat/scam": "^1.0.1",
     "@ngneat/tailwind": "^7.0.1",
     "@nrwl/cli": "11.6.1",
     "@nrwl/cypress": "11.6.1",
@@ -78,6 +81,7 @@
     "postcss": "^8.2.9",
     "prettier": "2.2.1",
     "tailwindcss": "^2.1.1",
+    "tailwindcss-debug-screens": "^2.0.0",
     "ts-jest": "26.4.0",
     "ts-node": "~9.1.1",
     "typescript": "~4.0.3"

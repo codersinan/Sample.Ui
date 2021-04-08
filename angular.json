@@ -84,7 +84,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sample:build"
+            "browserTarget": "sample:build",
+            "proxyConfig": "apps/sample/src/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -139,6 +140,56 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/sample-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "products": {
+      "projectType": "library",
+      "root": "libs/products",
+      "sourceRoot": "libs/products/src",
+      "prefix": "p",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/products/src/**/*.ts",
+              "libs/products/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/products"],
+          "options": {
+            "jestConfig": "libs/products/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "headless-ui-angular": {
+      "projectType": "library",
+      "root": "libs/headless-ui/angular",
+      "sourceRoot": "libs/headless-ui/angular/src",
+      "prefix": "t",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/headless-ui/angular/src/**/*.ts",
+              "libs/headless-ui/angular/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/headless-ui/angular"],
+          "options": {
+            "jestConfig": "libs/headless-ui/angular/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

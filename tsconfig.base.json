@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@sample-ui/products": ["libs/products/src/index.ts"],
+      "@headless-ui/angular": [
+        "libs/headless-ui/angular/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

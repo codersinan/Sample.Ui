@@ -1,29 +1,19 @@
 {
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "npmScope": "sample-ui",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "ODYwMzQxY2YtYWE4Ny00ZDA0LWJhMmItMmZmZTNjMzc1NDhlfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
         "showUsageWarnings": true
@@ -31,14 +21,9 @@
     }
   },
   "projects": {
-    "sample": {
-      "tags": []
-    },
-    "sample-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "sample"
-      ]
-    }
+    "sample": { "tags": [] },
+    "sample-e2e": { "tags": [], "implicitDependencies": ["sample"] },
+    "products": { "tags": ["products"] },
+    "headless-ui-angular": { "tags": [] }
   }
 }
