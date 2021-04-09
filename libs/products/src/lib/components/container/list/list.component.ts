@@ -10,7 +10,8 @@ import { ProductResponse } from '../../../responses';
 export class ListComponent {
   @Input() products: ProductResponse[];
   @Input() selected: ProductResponse;
-  @Output() select: EventEmitter<ProductResponse> = new EventEmitter();
+  @Input() loading: boolean;
+  @Output() pick: EventEmitter<ProductResponse> = new EventEmitter();
   @Output() delete: EventEmitter<ProductResponse> = new EventEmitter();
 
 }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { DialogService } from '@ngneat/dialog';
+
 import { ListModule } from './list/list.component';
 import { ItemModule } from './item/item.component';
 
@@ -10,6 +12,7 @@ import { ProductsStore } from '../../products.store';
 import { PatchProductRequest } from '../../requests';
 import { ProductResponse } from '../../responses';
 
+import { ModalModule, TDelete } from '@headless-ui/angular';
 @Component({
   selector: 'p-container',
   templateUrl: './container.component.html',
@@ -17,9 +20,9 @@ import { ProductResponse } from '../../responses';
 })
 export class ContainerComponent implements OnInit {
   vm$ = this.productStore.vm$;
-
   constructor(
     private productStore: ProductsStore,
+    private dialog: DialogService
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +44,25 @@ export class ContainerComponent implements OnInit {
   }
 
   deleteProduct(product) {
-    this.productStore.deleteProduct(product.id);
+    const dialogRef = this.dialog.open(TDelete, {
+      closeButton: false,
+      data: {
+        title: 'Are you sure to delete',
+        body: `You will remove product (${product.id})`
+      }
+    },
+    );
+    dialogRef.afterClosed$.subscribe(confirmed => {
+      if (confirmed) {
+        this.productStore.deleteProduct(product.id)
+      }
+    });
+    // const component= await import('@headless-ui/angular').then(m=>m.DeleteComponent);
+    // await this.modalService.open(component).then(result=>{
+    //   return ;
+    // });
+
+    // this.productStore.deleteProduct(product.id);
   }
 
   getErrors(error: HttpErrorResponse) {
@@ -58,7 +79,8 @@ export class ContainerComponent implements OnInit {
     ReactiveFormsModule,
 
     ListModule,
-    ItemModule
+    ItemModule,
+    ModalModule,
   ],
   exports: [ContainerComponent]
 })

@@ -1,70 +1,70 @@
 <form *ngIf="current" class="divide-y divide-gray-200">
     <div class="space-y-4 divide-y divide-gray-200">
       <div>
-        <h3 class="text-lg leading-6 font-medium text-gray-900">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">
           {{ current.id ? 'Product(' + original.name + ')' : 'New Product' }}
         </h3>
       </div>
   
       <div class="mt-6 space-y-6">
         <div
-          class="grid grid-cols-3 gap-4 items-start border-t border-gray-200 pt-5"
+          class="grid items-start grid-cols-3 gap-4 pt-5 border-t border-gray-200"
         >
           <label
             for="username"
-            class="block font-medium text-gray-700 mt-px pt-2"
+            class="block pt-2 mt-px font-medium text-gray-700"
           >
             Name
           </label>
-          <div class="mt-1 col-span-2">
-            <input
+          <div class="col-span-2 mt-1">
+            <input autofocus
               type="text"
               [(ngModel)]="current.name"
               name="name"
-              class="flex-1 block w-full border border-gray-300 p-2"
+              class="flex-1 block w-full p-2 border border-gray-300"
             />
           </div>
         </div>
   
         <div
-          class="grid grid-cols-3 gap-4 items-start border-t border-gray-200 pt-5"
+          class="grid items-start grid-cols-3 gap-4 pt-5 border-t border-gray-200"
         >
-          <label for="about" class="block font-medium text-gray-700 mt-px pt-2">
+          <label for="about" class="block pt-2 mt-px font-medium text-gray-700">
             Description
           </label>
-          <div class="mt-1 col-span-2 rounded-md">
+          <div class="col-span-2 mt-1 rounded-md">
             <textarea
               [(ngModel)]="current.description"
               name="description"
               rows="3"
-              class="flex-1 block w-full border border-gray-300 p-2"
+              class="flex-1 block w-full p-2 border border-gray-300"
             ></textarea>
             <p class="mt-2 text-gray-500">Write a description</p>
           </div>
         </div>
   
         <div
-        class="grid grid-cols-3 gap-4 items-start border-t border-gray-200 pt-5"
+        class="grid items-start grid-cols-3 gap-4 pt-5 border-t border-gray-200"
       >
         <label
           for="tags"
-          class="block font-medium text-gray-700 mt-px pt-2"
+          class="block pt-2 mt-px font-medium text-gray-700"
         >
           Tags
         </label>
-        <div class="mt-1 col-span-2">
+        <div class="col-span-2 mt-1">
           <t-tags [(tags)]="current.tags"></t-tags>
         </div>
       </div>
       </div>
     </div>
   
-    <div class="mt-5 pt-5">
+    <div class="pt-5 mt-5">
       <div class="flex justify-end">
         <button
           type="button"
           (click)="clear()"
-          class="bg-white py-2 px-4 border transform hover:scale-110 border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none"
+          class="px-4 py-2 text-sm font-medium text-gray-700 transform bg-white border border-gray-300 rounded-md shadow-sm hover:scale-110 hover:bg-gray-50 focus:outline-none"
         >
           Cancel
         </button>
@@ -73,7 +73,7 @@
           (click)="saved.emit(current)"
           [disabled]="loading"
           [class]="!original ? 'bg-green-400 hover:bg-green-500' : 'bg-yellow-400 hover:bg-yellow-500'"
-          class="ml-3 transform hover:scale-110 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white  focus:outline-none disabled:opacity-50"
+          class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white transform border border-transparent rounded-md shadow-sm hover:scale-110 focus:outline-none disabled:opacity-50"
         >
           Save
         </button>
@@ -81,7 +81,7 @@
           type="button"
           (click)="patchDocument()"
           [disabled]="loading"
-          class="ml-3 transform hover:scale-110 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none disabled:opacity-50"
+          class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white transform bg-indigo-600 border border-transparent rounded-md shadow-sm hover:scale-110 hover:bg-indigo-700 focus:outline-none disabled:opacity-50"
         >
           Patch
         </button>
