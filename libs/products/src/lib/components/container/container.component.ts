@@ -57,12 +57,6 @@ export class ContainerComponent implements OnInit {
         this.productStore.deleteProduct(product.id)
       }
     });
-    // const component= await import('@headless-ui/angular').then(m=>m.DeleteComponent);
-    // await this.modalService.open(component).then(result=>{
-    //   return ;
-    // });
-
-    // this.productStore.deleteProduct(product.id);
   }
 
   getErrors(error: HttpErrorResponse) {

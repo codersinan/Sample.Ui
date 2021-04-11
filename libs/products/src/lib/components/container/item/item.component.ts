@@ -1,31 +1,36 @@
-import { Component, NgModule, EventEmitter, Input, Output } from '@angular/core';
+import { Component, NgModule, EventEmitter, Input, Output, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { compare } from 'fast-json-patch';
 import { Observable } from 'rxjs';
 import { PatchProductRequest } from '../../../requests';
 import { ProductResponse } from '../../../responses';
 
-import { TagsModule } from "@headless-ui/angular";
+import { TagsModule } from '@headless-ui/angular';
 
 @Component({
   selector: 'p-item',
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss']
 })
-export class ItemComponent {
+export class ItemComponent implements AfterViewInit {
+
   original: ProductResponse;
   current?: ProductResponse;
 
   @Input() loading: Observable<boolean>;
   @Input() set product(value) {
     this.original = value;
-    this.current = Object.assign({}, value);
+    this.current = { ...value };
   }
 
   @Output() saved: EventEmitter<ProductResponse> = new EventEmitter;
   @Output() patched: EventEmitter<PatchProductRequest> = new EventEmitter;
   @Output() cancelled: EventEmitter<void> = new EventEmitter;
+
+  ngAfterViewInit(): void {
+    this.clear();
+  }
 
   clear() {
     this.product = this.original;
@@ -34,7 +39,7 @@ export class ItemComponent {
   patchDocument() {
     const productPatchRequest = {
       id: this.original.id,
-      operations: compare(this.original, this.current,true)
+      operations: compare(this.original, this.current, true)
     };
     this.patched.emit(productPatchRequest);
   }
@@ -46,7 +51,8 @@ export class ItemComponent {
   imports: [
     CommonModule,
     FormsModule,
-    TagsModule,
+    ReactiveFormsModule,
+    TagsModule
   ],
   exports: [ItemComponent]
 })

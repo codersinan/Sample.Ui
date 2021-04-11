@@ -11,9 +11,8 @@ export class ListComponent {
   @Input() products: ProductResponse[];
   @Input() selected: ProductResponse;
   @Input() loading: boolean;
-  @Output() pick: EventEmitter<ProductResponse> = new EventEmitter();
+  @Output() edit: EventEmitter<ProductResponse> = new EventEmitter();
   @Output() delete: EventEmitter<ProductResponse> = new EventEmitter();
-
 }
 
 @NgModule({

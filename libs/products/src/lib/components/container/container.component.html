@@ -4,6 +4,7 @@
       <div class="flex flex-1 xl:overflow-hidden">
         <ng-container *ngIf="vm$ | async as vm">
           <section
+            *ngIf="vm.selected!==undefined"
             aria-labelledby="primary-heading"
             class="flex flex-col flex-1 h-full min-w-0 p-8 overflow-hidden lg:order-last"
           >
@@ -92,14 +93,13 @@
                 </div>
               </div>
             </div>
-            <!-- </div> -->
             <ng-container
               *ngIf="!vm.loading && vm.products as products; else loading"
-            >
+            >            
               <p-list
                 [products]="products"
                 [selected]="vm.selected"
-                (pick)="selectProduct($event)"
+                (edit)="selectProduct($event)"
                 (delete)="deleteProduct($event)"
               >
               </p-list>
